@@ -68,6 +68,18 @@ recipe = Recipe.create([{
 	}
 	])
 	
+user = User.create([{
+	name: 'Heidi Engstrom',
+	email: 'hengstrom25@gmail.com',
+	password: 'test'
+	},
+	{
+	name: 'Marty Sauser',
+	email: 'msauser2@gmail.com',
+	password: 'test2'
+	}
+	])
+	
 	
 
 	
