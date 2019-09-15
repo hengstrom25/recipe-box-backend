@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 3) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.string "user_id"
   end
 
   create_table "recipes", force: :cascade do |t|

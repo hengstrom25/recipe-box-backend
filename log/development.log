@@ -307,3 +307,640 @@ Migrating to CreateUsers (3)
   ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from instance_eval at /Users/heidisauser1/.rvm/gems/ruby-2.4.2/gems/activesupport-5.2.3/lib/active_support/lazy_load_hooks.rb:71)
+Started GET "/categories" for ::1 at 2019-09-15 10:21:26 -0400
+Started GET "/categories/9" for ::1 at 2019-09-15 10:21:26 -0400
+Started GET "/categories/9/recipes" for ::1 at 2019-09-15 10:21:26 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by CategoriesController#index as */*
+Processing by CategoriesController#show as */*
+Processing by RecipesController#index as */*
+  Parameters: {"id"=>"9"}
+  Parameters: {"category_id"=>"9"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:7
+  ↳ app/controllers/recipes_controller.rb:5
+  ↳ app/controllers/categories_controller.rb:11
+Completed 200 OK in 29ms (Views: 12.7ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 9]]
+Completed 200 OK in 31ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 35ms (Views: 5.9ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/categories/3/recipes" for ::1 at 2019-09-15 10:21:30 -0400
+Started GET "/categories/3" for ::1 at 2019-09-15 10:21:30 -0400
+Processing by RecipesController#index as */*
+Processing by CategoriesController#show as */*
+  Parameters: {"id"=>"3"}
+  Parameters: {"category_id"=>"3"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:11
+  ↳ app/controllers/recipes_controller.rb:5
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/recipes/73" for ::1 at 2019-09-15 10:21:31 -0400
+Started GET "/categories" for ::1 at 2019-09-15 10:21:31 -0400
+Processing by RecipesController#show as */*
+Processing by CategoriesController#index as */*
+  Parameters: {"id"=>"73"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 73], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:7
+  ↳ app/controllers/recipes_controller.rb:10
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.2ms)
+
+
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/categories" for ::1 at 2019-09-15 10:21:36 -0400
+Processing by CategoriesController#index as */*
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/categories_controller.rb:7
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2019-09-15 10:24:08 -0400
+Processing by StaticPagesController#home as HTML
+Completed 406 Not Acceptable in 52ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (StaticPagesController#home is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.2.3) lib/action_controller/metal/implicit_render.rb:55:in `default_render'
+actionpack (5.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+actionpack (5.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `tap'
+actionpack (5.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.3) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.3) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.3) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.3) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.3) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.3) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.3) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.3) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.3) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.3) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.3) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.3) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.3) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.3) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.3) lib/rack/cors.rb:95:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/cateogories" for ::1 at 2019-09-15 10:24:20 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/cateogories"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.3) lib/rack/cors.rb:95:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/categories" for ::1 at 2019-09-15 10:24:24 -0400
+Processing by CategoriesController#index as HTML
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/categories_controller.rb:7
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/categories" for ::1 at 2019-09-15 10:28:47 -0400
+Processing by CategoriesController#index as */*
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/categories_controller.rb:7
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.1ms)
+
+
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from load at /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from load at /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+Migrating to CreateCategories (1)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "categories" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  ↳ db/migrate/001_create_categories.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "1"]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+Migrating to CreateRecipes (2)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "recipes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "recipe_field" varchar, "notes" varchar, "category_id" integer, "user_id" integer)[0m
+  ↳ db/migrate/002_create_recipes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "2"]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+Migrating to CreateUsers (3)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar)[0m
+  ↳ db/migrate/003_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "3"]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-09-15 14:34:49.233312"], ["updated_at", "2019-09-15 14:34:49.233312"]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+Started GET "/categories" for ::1 at 2019-09-15 10:34:56 -0400
+Processing by CategoriesController#index as */*
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/categories_controller.rb:7
+Completed 200 OK in 6ms (Views: 1.5ms | ActiveRecord: 0.7ms)
+
+
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from load at /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+Migrating to CreateCategories (1)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "categories" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "user_id" varchar)[0m
+  ↳ db/migrate/001_create_categories.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "1"]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+Migrating to CreateRecipes (2)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "recipes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "recipe_field" varchar, "notes" varchar, "category_id" integer, "user_id" integer)[0m
+  ↳ db/migrate/002_create_recipes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "2"]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+Migrating to CreateUsers (3)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar)[0m
+  ↳ db/migrate/003_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "3"]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-09-15 14:35:47.967931"], ["updated_at", "2019-09-15 14:35:47.967931"]]
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+Started GET "/categories" for ::1 at 2019-09-15 10:35:51 -0400
+Processing by CategoriesController#index as */*
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/categories_controller.rb:7
+Completed 200 OK in 9ms (Views: 3.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/categories" for ::1 at 2019-09-15 10:36:28 -0400
+Processing by CategoriesController#index as HTML
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/categories_controller.rb:7
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.1ms)
+
+
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from load at /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/heidisauser1/.rvm/gems/ruby-2.4.2/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Breakfast"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Salad"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Soup"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Side Dishes"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Meat Dishes"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Vegetarian"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Pasta"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Dessert"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCategory Create (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("name") VALUES (?)[0m  [["name", "Other"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "recipe_field", "notes", "category_id") VALUES (?, ?, ?, ?)[0m  [["name", "Scrambled Eggs"], ["recipe_field", "https://www.foodnetwork.com/recipes/ina-garten/slow-cooked-scrambled-eggs-with-caviar-recipe-1941943"], ["notes", "Must try next time there is caviar in the house"], ["category_id", 1]]
+  ↳ db/seeds.rb:39
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "recipe_field", "notes", "category_id") VALUES (?, ?, ?, ?)[0m  [["name", "Mom's Tossed Salad"], ["recipe_field", "http://greatcooks.com/blah/123"], ["notes", "This is a good salad"], ["category_id", 2]]
+  ↳ db/seeds.rb:39
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "recipe_field", "notes", "category_id") VALUES (?, ?, ?, ?)[0m  [["name", "Dad's Potato Salad"], ["recipe_field", "http://goodstuff.com/abc/456"], ["notes", "Many calories"], ["category_id", 2]]
+  ↳ db/seeds.rb:39
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "recipe_field", "notes", "category_id") VALUES (?, ?, ?, ?)[0m  [["name", "Chocolate Cake"], ["recipe_field", "http://easybake.com/xyz/999"], ["notes", "Love it"], ["category_id", 9]]
+  ↳ db/seeds.rb:39
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:39
+  [1m[36mRecipe Create (0.3ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "recipe_field", "notes", "category_id") VALUES (?, ?, ?, ?)[0m  [["name", "Caprese Salad"], ["recipe_field", "2 Tomatoes, 1 container fresh mozzarella, fresh basil, olive oil, salt & pepper"], ["notes", "Slice tomatoes and mozzarella into equally sized pieces. Layer with fresh basil, drizzle with olive oil and season with salt and pepper to taste"], ["category_id", 2]]
+  ↳ db/seeds.rb:39
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:39
+Started GET "/categories" for ::1 at 2019-09-15 10:37:59 -0400
+Processing by CategoriesController#index as */*
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/categories_controller.rb:7
+Completed 200 OK in 16ms (Views: 15.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/categories/1/recipes" for ::1 at 2019-09-15 10:38:06 -0400
+Started GET "/categories/1" for ::1 at 2019-09-15 10:38:06 -0400
+Processing by CategoriesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:11
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+
+
+Processing by RecipesController#index as */*
+  Parameters: {"category_id"=>"1"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:5
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 21ms (Views: 13.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/categories/2/recipes" for ::1 at 2019-09-15 10:38:08 -0400
+Processing by RecipesController#index as */*
+  Parameters: {"category_id"=>"2"}
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:5
+Started GET "/categories/2" for ::1 at 2019-09-15 10:38:08 -0400
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6
+Processing by CategoriesController#show as */*
+  Parameters: {"id"=>"2"}
+Completed 200 OK in 9ms (Views: 4.7ms | ActiveRecord: 1.5ms)
+
+
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:11
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/categories/3/recipes" for ::1 at 2019-09-15 10:38:09 -0400
+Started GET "/categories/3" for ::1 at 2019-09-15 10:38:09 -0400
+Processing by RecipesController#index as */*
+Processing by CategoriesController#show as */*
+  Parameters: {"category_id"=>"3"}
+  Parameters: {"id"=>"3"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:5
+  ↳ app/controllers/categories_controller.rb:11
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 3]]
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.1ms)
+
+
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/categories/4" for ::1 at 2019-09-15 10:38:09 -0400
+Processing by CategoriesController#show as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:11
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/categories/4/recipes" for ::1 at 2019-09-15 10:38:09 -0400
+Processing by RecipesController#index as */*
+  Parameters: {"category_id"=>"4"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:5
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/categories/5/recipes" for ::1 at 2019-09-15 10:38:10 -0400
+Processing by RecipesController#index as */*
+Started GET "/categories/5" for ::1 at 2019-09-15 10:38:10 -0400
+  Parameters: {"category_id"=>"5"}
+Processing by CategoriesController#show as */*
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Parameters: {"id"=>"5"}
+  ↳ app/controllers/recipes_controller.rb:5
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 5]]
+  ↳ app/controllers/categories_controller.rb:11
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Completed 200 OK in 7ms (Views: 2.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/categories/6" for ::1 at 2019-09-15 10:38:10 -0400
+Processing by CategoriesController#show as */*
+  Parameters: {"id"=>"6"}
+Started GET "/categories/6/recipes" for ::1 at 2019-09-15 10:38:10 -0400
+Processing by RecipesController#index as */*
+  Parameters: {"category_id"=>"6"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:5
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 6]]
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:6
+  ↳ app/controllers/categories_controller.rb:11
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.5ms)
+
+
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/categories/7" for ::1 at 2019-09-15 10:38:11 -0400
+Processing by CategoriesController#show as */*
+  Parameters: {"id"=>"7"}
+Started GET "/categories/7/recipes" for ::1 at 2019-09-15 10:38:11 -0400
+  [1m[36mCategory Load (1.6ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Processing by RecipesController#index as */*
+  Parameters: {"category_id"=>"7"}
+  ↳ app/controllers/categories_controller.rb:11
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 1.6ms)
+
+
+  ↳ app/controllers/recipes_controller.rb:5
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/categories/8" for ::1 at 2019-09-15 10:38:11 -0400
+Processing by CategoriesController#show as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:11
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/categories/8/recipes" for ::1 at 2019-09-15 10:38:11 -0400
+Processing by RecipesController#index as */*
+  Parameters: {"category_id"=>"8"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:5
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 8]]
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/categories/9/recipes" for ::1 at 2019-09-15 10:38:12 -0400
+Processing by RecipesController#index as */*
+  Parameters: {"category_id"=>"9"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:5
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."category_id" = ?[0m  [["category_id", 9]]
+  ↳ app/controllers/recipes_controller.rb:6
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/categories/9" for ::1 at 2019-09-15 10:38:12 -0400
+Processing by CategoriesController#show as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:11
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms)
+
+
